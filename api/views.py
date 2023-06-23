@@ -5,7 +5,6 @@ from .serializers import AuthorSerializer,BookSerializer
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.authentication import SessionAuthentication
-from rest_framework.generics import ListAPIView,CreateAPIView,UpdateAPIView,RetrieveAPIView,DestroyAPIView,ListCreateAPIView,RetrieveUpdateAPIView,RetrieveDestroyAPIView,RetrieveUpdateDestroyAPIView
 from rest_framework.permissions import DjangoModelPermissions
 from rest_framework.filters import SearchFilter,OrderingFilter
 
@@ -32,10 +31,9 @@ class BookModelViewSet(viewsets.ModelViewSet):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
     authentication_classes = [SessionAuthentication]
-    # permission_classes = [IsAuthenticatedOrReadOnly]  
     permission_classes = [DjangoModelPermissions] #not read without authenticate
     filter_backends = [SearchFilter]
     search_fields = ['book_name']
     # ordering_field = '__all__'
-    ordering_field = ['book_name']
+
 

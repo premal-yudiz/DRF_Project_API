@@ -7,7 +7,7 @@ from django.db import models
 class Author(models.Model):
     author_name = models.CharField(max_length=50)
     author_email = models.EmailField()
-    author_profile_pic = models.ImageField()
+    author_profile_pic = models.ImageField(blank=True)
 
     def __str__(self):
         return self.author_name
@@ -18,7 +18,7 @@ class Book(models.Model):
     book_author = models.ForeignKey(Author, on_delete=models.CASCADE,related_name='author')
     book_description = models.TextField()
     book_price = models.IntegerField()
-    book_img = models.ImageField()
+    book_img = models.ImageField(blank=True)
 
 
     def __str__(self):
